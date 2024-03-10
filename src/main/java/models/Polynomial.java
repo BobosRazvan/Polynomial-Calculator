@@ -1,7 +1,6 @@
 package models;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Polynomial {
 
@@ -51,6 +50,48 @@ public class Polynomial {
         }
         System.out.println();
     }
+
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        boolean firstTerm = true; // to handle leading '+' sign
+        List<Integer> degrees = new ArrayList<>(monomials.keySet());
+        Collections.sort(degrees, Collections.reverseOrder()); // Sort degrees in descending order
+        for (int degree : degrees) {
+            Monomial monomial = monomials.get(degree);
+            if (monomial != null) {
+                double coefficient = monomial.getCoefficient().doubleValue();
+                if (coefficient != 0.0) {
+                    String coefficientString;
+                    if (coefficient == (int) coefficient) {
+                        coefficientString = Integer.toString((int) coefficient);
+                    } else {
+                        coefficientString = Double.toString(coefficient);
+                    }
+                    if (!firstTerm) {
+                        if (coefficient > 0) {
+                            result.append(" + ");
+                        } else {
+                            result.append(" - ");
+                        }
+                    }
+                    if (Math.abs(coefficient) != 1 || degree == 0) { // Skip coefficient if it's 1 (except for constant term)
+                        result.append(coefficientString);
+                    }
+                    if (degree > 0) {
+                        result.append("x");
+                        if (degree > 1) {
+                            result.append("^").append(degree);
+                        }
+                    }
+                    firstTerm = false;
+                }
+            }
+        }
+        return result.toString();
+    }
+
+
+
 
 
 

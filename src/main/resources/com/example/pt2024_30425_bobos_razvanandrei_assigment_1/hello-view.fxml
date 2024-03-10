@@ -50,10 +50,10 @@
                   </Label>
                </children>
             </Pane>
-            <TextField fx:id="TextFirstPolynomial" layoutX="275.0" layoutY="94.0" prefHeight="25.0" prefWidth="183.0" />
+            <TextField fx:id="textFirstPolynomial" layoutX="275.0" layoutY="94.0" prefHeight="25.0" prefWidth="183.0" />
             <TextField fx:id="textSecondPolynomial" layoutX="275.0" layoutY="130.0" prefHeight="25.0" prefWidth="183.0" />
             <TextField fx:id="textResult" layoutX="275.0" layoutY="166.0" prefHeight="25.0" prefWidth="183.0" />
-            <Pane fx:id="btnAdd" layoutX="64.0" layoutY="216.0" prefHeight="25.0" prefWidth="120.0" styleClass="highlight">
+            <Pane fx:id="btnAdd" layoutX="64.0" layoutY="216.0" onMouseClicked="#onOperationClicked" prefHeight="25.0" prefWidth="120.0" styleClass="highlight">
                <children>
                   <Label layoutX="37.0" prefHeight="25.0" prefWidth="42.0" text="Add">
                      <font>
@@ -62,7 +62,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btnSubtract" layoutX="275.0" layoutY="216.0" prefHeight="25.0" prefWidth="120.0" styleClass="highlight">
+            <Pane fx:id="btnSubtract" layoutX="275.0" layoutY="216.0" onMouseClicked="#onOperationClicked" prefHeight="25.0" prefWidth="120.0" styleClass="highlight">
                <children>
                   <Label layoutX="17.0" layoutY="-1.0" prefHeight="27.0" prefWidth="87.0" text="Subtract">
                      <font>
@@ -71,7 +71,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btnMultiplicate" layoutX="68.0" layoutY="257.0" prefHeight="25.0" prefWidth="120.0" styleClass="highlight">
+            <Pane fx:id="btnMultiplicate" layoutX="68.0" layoutY="257.0" onMouseClicked="#onOperationClicked" prefHeight="25.0" prefWidth="120.0" styleClass="highlight">
                <children>
                   <Label layoutX="10.0" layoutY="-1.0" prefHeight="27.0" prefWidth="116.0" text="Multiplicate">
                      <font>
@@ -80,7 +80,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btnDivide" layoutX="275.0" layoutY="257.0" prefHeight="25.0" prefWidth="120.0" styleClass="highlight">
+            <Pane fx:id="btnDivide" layoutX="275.0" layoutY="257.0" onMouseClicked="#onOperationClicked" prefHeight="25.0" prefWidth="120.0" styleClass="highlight">
                <children>
                   <Label layoutX="23.0" layoutY="-1.0" prefHeight="27.0" prefWidth="109.0" text="Divide">
                      <font>
@@ -89,7 +89,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btnDerivate" layoutX="64.0" layoutY="291.0" prefHeight="25.0" prefWidth="120.0" styleClass="highlight">
+            <Pane fx:id="btnDerivate" layoutX="64.0" layoutY="291.0" onMouseClicked="#onOperationClicked" prefHeight="25.0" prefWidth="120.0" styleClass="highlight">
                <children>
                   <Label layoutX="30.0" layoutY="-1.0" prefHeight="27.0" prefWidth="81.0" text="Derivate">
                      <font>
@@ -98,7 +98,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btnIntegrate" layoutX="275.0" layoutY="291.0" prefHeight="25.0" prefWidth="120.0" styleClass="highlight">
+            <Pane fx:id="btnIntegrate" layoutX="275.0" layoutY="291.0" onMouseClicked="#onOperationClicked" prefHeight="25.0" prefWidth="120.0" styleClass="highlight">
                <children>
                   <Label layoutX="12.0" layoutY="-1.0" prefHeight="27.0" prefWidth="87.0" text="Integrate">
                      <font>
@@ -107,7 +107,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btnCalculate" layoutX="164.0" layoutY="335.0" prefHeight="25.0" prefWidth="120.0" styleClass="highlight">
+            <Pane fx:id="btnCalculate" layoutX="164.0" layoutY="335.0" onMouseClicked="#onOperationClicked" prefHeight="25.0" prefWidth="120.0" styleClass="highlight">
                <children>
                   <Label layoutX="14.0" layoutY="-1.0" prefHeight="27.0" prefWidth="126.0" text="Calculate">
                      <font>
