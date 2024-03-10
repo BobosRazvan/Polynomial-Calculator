@@ -1,0 +1,170 @@
+package models;
+
+import java.util.Map;
+
+public class Operations {
+
+    public Polynomial add(Polynomial polynomial1, Polynomial polynomial2) {
+        Polynomial result = new Polynomial();
+
+        // Add monomials from polynomial1 to the result
+        for (Map.Entry<Integer, Monomial> entry : polynomial1.monomials.entrySet()) {
+            Monomial resultMonomial = entry.getValue();
+            result.addMonomial(resultMonomial);
+        }
+
+        // Add monomials from polynomial2 to the result
+        for (Map.Entry<Integer, Monomial> entry : polynomial2.monomials.entrySet()) {
+            int degree = entry.getKey();
+            Monomial resultMonomial = entry.getValue();
+
+            // Check if the monomial with the same degree exists in the result polynomial
+            if (result.monomials.containsKey(degree)) {
+                // If it exists, add the current monomial to it
+                Monomial existingMonomial = result.monomials.get(degree);
+                Monomial newMonomial = existingMonomial.add(resultMonomial);
+                result.addMonomial(newMonomial);
+
+            } else {
+                // Otherwise, add the current monomial to the result polynomial
+                result.addMonomial(resultMonomial);
+            }
+        }
+
+        return result;
+    }
+
+    public Polynomial subtract(Polynomial polynomial1,Polynomial polynomial2){
+        Polynomial result= new Polynomial();
+
+        for (Map.Entry<Integer, Monomial> entry : polynomial1.monomials.entrySet()) {
+            Monomial resultMonomial = entry.getValue();
+            result.addMonomial(resultMonomial);
+        }
+
+        for (Map.Entry<Integer, Monomial> entry : polynomial2.monomials.entrySet()){
+            Monomial monomial2= entry.getValue();
+            int degree=entry.getKey();
+
+            if(result.monomials.containsKey(degree)){
+                Monomial newResult=result.monomials.get(degree).subtract(monomial2);
+                result.addMonomial(newResult);
+
+            }else{
+                result.addMonomial(monomial2);
+            }
+        }
+
+        return result;
+    }
+
+
+    public Polynomial multiply(Polynomial polynomial1,Polynomial polynomial2){
+
+        Polynomial result = new Polynomial();
+
+        for(Map.Entry<Integer,Monomial> entry1 : polynomial1.monomials.entrySet()){
+            for(Map.Entry<Integer,Monomial> entry2 : polynomial2.monomials.entrySet()){
+                int degree1=entry1.getKey();
+                int degree2=entry2.getKey();
+
+                Monomial monomial1=entry1.getValue();
+                Monomial monomial2=entry2.getValue();
+                Monomial resultMonomial=monomial1.multiply(monomial2);
+
+                if(result.monomials.containsKey(resultMonomial.degree)){
+                    Monomial newResult=result.monomials.get(resultMonomial.degree).add(resultMonomial);
+                    result.addMonomial(newResult);
+                }
+                else result.addMonomial(resultMonomial);
+
+            }
+        }
+
+        return result;
+    }
+
+    public DivisionResult divide(Polynomial n, Polynomial d) {
+        Operations operations = new Operations();
+
+        System.out.println(n.getLead().degree);
+        System.out.println(d.getLead().degree);
+
+        if (n.getLead().degree >= d.getLead().degree) {
+            if (d.checkIfPolynomIsZero()) {
+                throw new IllegalArgumentException("The divider is 0!.");
+            } else {
+                Polynomial q = new Polynomial();
+                Polynomial rest = new Polynomial();
+                Polynomial r = n;
+
+                //r.showPolynom();
+
+                while (!r.checkIfPolynomIsZero() && r.getLead().degree >= d.getLead().degree) {
+                    Polynomial t = new Polynomial();
+                    Monomial tMonomial = r.getLead().divide(d.getLead());
+                    System.out.println(tMonomial.coefficient+" "+tMonomial.degree);
+
+                    t.addMonomial(tMonomial);
+
+                    q = operations.add(q, t);
+
+                    Polynomial intermediary = operations.multiply(t, d);
+
+                    r = operations.subtract(r, intermediary);
+
+                }
+
+                rest=r;
+
+                //q.showPolynom();
+                //rest.showPolynom();
+                return new DivisionResult(q, r);
+            }
+        } else {
+            throw new IllegalArgumentException("The first polynomial is smaller than the second.");
+        }
+    }
+
+
+    public Polynomial differentiate(Polynomial polynomial1) {
+        Polynomial result = new Polynomial();
+
+        for (Map.Entry<Integer, Monomial> entry : polynomial1.monomials.entrySet()) {
+            int degree = entry.getKey();
+            Monomial originalMonomial = entry.getValue();
+            if(degree!=0) {
+                Monomial resultMonomial = new Monomial(degree - 1, originalMonomial.coefficient); // Create a new Monomial object for the result
+                resultMonomial.coefficient = originalMonomial.coefficient.doubleValue() * degree;
+                result.addMonomial(resultMonomial);
+            }
+
+        }
+
+        return result;
+    }
+
+
+    public Polynomial integrate(Polynomial polynomial1) {
+        Polynomial result = new Polynomial();
+
+        for (Map.Entry<Integer, Monomial> entry : polynomial1.monomials.entrySet()) {
+            int degree = entry.getKey();
+            Monomial originalMonomial = entry.getValue();
+            Monomial resultMonomial = new Monomial(degree + 1,originalMonomial.coefficient); // Create a new Monomial object
+
+            if (degree == -1) {
+                throw new IllegalArgumentException("You cannot integrate a polynomial of form a/x.");
+            } else {
+                resultMonomial.coefficient = originalMonomial.coefficient.doubleValue() / (degree + 1); // Calculate the integrated coefficient
+            }
+
+            result.addMonomial(resultMonomial);
+        }
+
+        return result;
+    }
+
+
+}
+
