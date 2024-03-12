@@ -65,13 +65,15 @@ public class Polynomial {
                     if (coefficient == (int) coefficient) {
                         coefficientString = Integer.toString((int) coefficient);
                     } else {
-                        coefficientString = Double.toString(coefficient);
+                        // Format coefficient to two decimal places
+                        coefficientString = String.format("%.2f", coefficient);
                     }
                     if (!firstTerm) {
                         if (coefficient > 0) {
                             result.append(" + ");
                         } else {
                             result.append(" - ");
+                            coefficientString = coefficientString.substring(1); // Remove the negative sign from coefficientString
                         }
                     }
                     if (Math.abs(coefficient) != 1 || degree == 0) { // Skip coefficient if it's 1 (except for constant term)
@@ -89,6 +91,7 @@ public class Polynomial {
         }
         return result.toString();
     }
+
 
 
 

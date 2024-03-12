@@ -50,9 +50,18 @@
                   </Label>
                </children>
             </Pane>
-            <TextField fx:id="textFirstPolynomial" layoutX="275.0" layoutY="94.0" prefHeight="25.0" prefWidth="183.0" />
-            <TextField fx:id="textSecondPolynomial" layoutX="275.0" layoutY="130.0" prefHeight="25.0" prefWidth="183.0" />
-            <TextField fx:id="textResult" layoutX="275.0" layoutY="166.0" prefHeight="25.0" prefWidth="183.0" />
+            <TextField fx:id="textFirstPolynomial" layoutX="275.0" layoutY="94.0" prefHeight="25.0" prefWidth="183.0">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></TextField>
+            <TextField fx:id="textSecondPolynomial" layoutX="275.0" layoutY="130.0" prefHeight="25.0" prefWidth="183.0">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></TextField>
+            <TextField fx:id="textResult" layoutX="275.0" layoutY="166.0" prefHeight="25.0" prefWidth="183.0">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></TextField>
             <Pane fx:id="btnAdd" layoutX="64.0" layoutY="216.0" onMouseClicked="#onOperationClicked" prefHeight="25.0" prefWidth="120.0" styleClass="highlight">
                <children>
                   <Label layoutX="37.0" prefHeight="25.0" prefWidth="42.0" text="Add">
@@ -107,16 +116,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btnCalculate" layoutX="164.0" layoutY="335.0" onMouseClicked="#onOperationClicked" prefHeight="25.0" prefWidth="120.0" styleClass="highlight">
-               <children>
-                  <Label layoutX="14.0" layoutY="-1.0" prefHeight="27.0" prefWidth="126.0" text="Calculate">
-                     <font>
-                        <Font name="Arial Bold" size="18.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane fx:id="btn1" layoutX="41.0" layoutY="378.0" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
+            <Pane fx:id="btn1" layoutX="41.0" layoutY="378.0" onMouseClicked="#onNumberClicked" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
                <children>
                   <Label layoutX="15.0" layoutY="5.0" prefHeight="27.0" prefWidth="24.0" text="1" textFill="#deff08">
                      <font>
@@ -125,7 +125,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btn2" layoutX="104.0" layoutY="378.0" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
+            <Pane fx:id="btn2" layoutX="104.0" layoutY="378.0" onMouseClicked="#onNumberClicked" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
                <children>
                   <Label layoutX="15.0" layoutY="5.0" prefHeight="27.0" prefWidth="24.0" text="2" textFill="#deff08">
                      <font>
@@ -134,7 +134,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btn3" layoutX="164.0" layoutY="378.0" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
+            <Pane fx:id="btn3" layoutX="164.0" layoutY="378.0" onMouseClicked="#onNumberClicked" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
                <children>
                   <Label layoutX="15.0" layoutY="5.0" prefHeight="27.0" prefWidth="24.0" text="3" textFill="#deff08">
                      <font>
@@ -143,7 +143,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btn4" layoutX="42.0" layoutY="427.0" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
+            <Pane fx:id="btn4" layoutX="42.0" layoutY="427.0" onMouseClicked="#onNumberClicked" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
                <children>
                   <Label layoutX="15.0" layoutY="5.0" prefHeight="27.0" prefWidth="24.0" text="4" textFill="#deff08">
                      <font>
@@ -152,7 +152,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btn5" layoutX="105.0" layoutY="427.0" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
+            <Pane fx:id="btn5" layoutX="105.0" layoutY="427.0" onMouseClicked="#onNumberClicked" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
                <children>
                   <Label layoutX="15.0" layoutY="5.0" prefHeight="27.0" prefWidth="24.0" text="5" textFill="#deff08">
                      <font>
@@ -161,7 +161,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btn6" layoutX="165.0" layoutY="427.0" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
+            <Pane fx:id="btn6" layoutX="165.0" layoutY="427.0" onMouseClicked="#onNumberClicked" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
                <children>
                   <Label layoutX="15.0" layoutY="5.0" prefHeight="27.0" prefWidth="24.0" text="6" textFill="#deff08">
                      <font>
@@ -170,7 +170,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btn7" layoutX="44.0" layoutY="477.0" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
+            <Pane fx:id="btn7" layoutX="44.0" layoutY="477.0" onMouseClicked="#onNumberClicked" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
                <children>
                   <Label layoutX="15.0" layoutY="5.0" prefHeight="27.0" prefWidth="24.0" text="7" textFill="#deff08">
                      <font>
@@ -179,7 +179,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btn8" layoutX="107.0" layoutY="477.0" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
+            <Pane fx:id="btn8" layoutX="107.0" layoutY="477.0" onMouseClicked="#onNumberClicked" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
                <children>
                   <Label layoutX="15.0" layoutY="5.0" prefHeight="27.0" prefWidth="24.0" text="8" textFill="#deff08">
                      <font>
@@ -188,7 +188,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btn9" layoutX="167.0" layoutY="477.0" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
+            <Pane fx:id="btn9" layoutX="167.0" layoutY="477.0" onMouseClicked="#onNumberClicked" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
                <children>
                   <Label layoutX="15.0" layoutY="5.0" prefHeight="27.0" prefWidth="24.0" text="9" textFill="#deff08">
                      <font>
@@ -197,7 +197,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btn0" layoutX="280.0" layoutY="378.0" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
+            <Pane fx:id="btn0" layoutX="280.0" layoutY="378.0" onMouseClicked="#onNumberClicked" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
                <children>
                   <Label layoutX="15.0" layoutY="5.0" prefHeight="27.0" prefWidth="24.0" text="0" textFill="#deff08">
                      <font>
@@ -206,7 +206,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btnPlus" layoutX="343.0" layoutY="378.0" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
+            <Pane fx:id="btnPlus" layoutX="343.0" layoutY="378.0" onMouseClicked="#onNumberClicked" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
                <children>
                   <Label layoutX="15.0" layoutY="5.0" prefHeight="27.0" prefWidth="24.0" text="+" textFill="#0006ff">
                      <font>
@@ -215,7 +215,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btnMinus" layoutX="403.0" layoutY="378.0" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
+            <Pane fx:id="btnMinus" layoutX="403.0" layoutY="378.0" onMouseClicked="#onNumberClicked" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
                <children>
                   <Label layoutX="15.0" layoutY="5.0" prefHeight="27.0" prefWidth="24.0" text="-" textFill="#0006ff">
                      <font>
@@ -224,7 +224,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btnDivide" layoutX="284.0" layoutY="427.0" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
+            <Pane fx:id="btnDivide" layoutX="284.0" layoutY="427.0" onMouseClicked="#onNumberClicked" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
                <children>
                   <Label layoutX="15.0" layoutY="5.0" prefHeight="27.0" prefWidth="24.0" text="/" textFill="#0006ff">
                      <font>
@@ -233,7 +233,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btnMultiply" layoutX="347.0" layoutY="427.0" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
+            <Pane fx:id="btnMultiply" layoutX="347.0" layoutY="427.0" onMouseClicked="#onNumberClicked" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
                <children>
                   <Label layoutX="15.0" layoutY="5.0" prefHeight="27.0" prefWidth="24.0" text="*" textFill="#0006ff">
                      <font>
@@ -242,7 +242,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btnToPower" layoutX="407.0" layoutY="427.0" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
+            <Pane fx:id="btnToPower" layoutX="407.0" layoutY="427.0" onMouseClicked="#onNumberClicked" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
                <children>
                   <Label layoutX="15.0" layoutY="5.0" prefHeight="27.0" prefWidth="24.0" text="^" textFill="#0006ff">
                      <font>
@@ -251,7 +251,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btnPoint" layoutX="286.0" layoutY="477.0" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
+            <Pane fx:id="btnPoint" layoutX="286.0" layoutY="477.0" onMouseClicked="#onNumberClicked" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
                <children>
                   <Label layoutX="15.0" layoutY="5.0" prefHeight="27.0" prefWidth="24.0" text="." textFill="#0006ff">
                      <font>
@@ -260,7 +260,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btnX" layoutX="349.0" layoutY="477.0" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
+            <Pane fx:id="btnX" layoutX="349.0" layoutY="477.0" onMouseClicked="#onNumberClicked" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
                <children>
                   <Label layoutX="15.0" layoutY="5.0" prefHeight="27.0" prefWidth="24.0" text="x" textFill="#0006ff">
                      <font>
@@ -269,7 +269,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btnDel" layoutX="409.0" layoutY="477.0" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
+            <Pane fx:id="btnDel" layoutX="409.0" layoutY="477.0" onMouseClicked="#onDeleteClicked" prefHeight="37.0" prefWidth="49.0" styleClass="highlight">
                <children>
                   <Label layoutX="5.0" layoutY="5.0" prefHeight="27.0" prefWidth="34.0" text="del" textFill="#0006ff">
                      <font>

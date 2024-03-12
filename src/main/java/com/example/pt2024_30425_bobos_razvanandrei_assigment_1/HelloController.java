@@ -46,8 +46,6 @@ public class HelloController {
     @FXML
     private Pane btnAdd;
 
-    @FXML
-    private Pane btnCalculate;
 
     @FXML
     private Pane btnDel;
@@ -118,13 +116,40 @@ public class HelloController {
 
                 switch(labelText){
 
-                    case "Add" : Polynomial result = operations.add(polynomial1,polynomial2);
-                                 result.showPolynom();
-                                 textResult.setText(result.toString());
+                    case "Add" : Polynomial result1 = operations.add(polynomial1,polynomial2);
+                                 result1.showPolynom();
+                                 textResult.setText(result1.toString());
                                  break;
 
-                    default:
-                        System.out.println("Select an operation.");
+                    case "Subtract" : Polynomial result2 = operations.subtract(polynomial1,polynomial2);
+                                        result2.showPolynom();
+                                        textResult.setText(result2.toString());
+                                        break;
+
+                    case "Divide" : DivisionResult result3 = operations.divide(polynomial1,polynomial2);
+                                    result3.getQuotient().showPolynom();
+                                    result3.getQuotient().showPolynom();
+                                    textResult.setText("Q: "+result3.getQuotient().toString()+"    R: "+result3.getRemainder().toString());
+                                    break;
+
+                    case "Multiplicate" : Polynomial result5 = operations.multiply(polynomial1,polynomial2);
+                                    result5.showPolynom();
+                                    textResult.setText(result5.toString());
+                                    break;
+
+
+                    case "Integrate" : Polynomial result6 = operations.integrate(polynomial1);
+                                    result6.showPolynom();
+                                    textResult.setText(result6.toString());
+                                    break;
+
+                    case "Derivate" : Polynomial result7 = operations.differentiate(polynomial1);
+                                     result7.showPolynom();
+                                     textResult.setText(result7.toString());
+                                     break;
+
+                    default: break;
+
 
 
                 }
@@ -135,7 +160,8 @@ public class HelloController {
     private Polynomial parsePolynomial(String polynomialInput) {
         Polynomial polynomial = new Polynomial();
         if (polynomialInput != null && !polynomialInput.trim().isEmpty()) {
-            String[] monomialStrings = polynomialInput.split("\\+");
+            // Split the polynomial input string based on both '+' and '-'
+            String[] monomialStrings = polynomialInput.split("(?=\\+|\\-)");
             for (String monomialString : monomialStrings) {
                 String[] parts = monomialString.trim().split("x\\^");
                 if (parts.length == 1) {
@@ -160,14 +186,77 @@ public class HelloController {
                     int exponent = Integer.parseInt(parts[1]);
                     polynomial.addMonomial(new Monomial(exponent, coefficient));
                 } else {
+                    textResult.setText("Invalid monomial format.");
                     System.err.println("Invalid monomial format: " + monomialString);
+
                 }
             }
         } else {
+            textResult.setText("Invalid monomial format.");
             System.err.println("Input string is empty");
+
         }
 
         return polynomial;
     }
+
+    @FXML
+    void onNumberClicked(MouseEvent event) {
+
+        if (event.getSource() instanceof Pane) {
+            Pane clickedPane = (Pane) event.getSource();
+
+            Label clickedLabel = (Label) clickedPane.getChildren().get(0);
+
+            String labelText = clickedLabel.getText();
+            //System.out.println(labelText);
+
+
+            TextField focusedTextField = getFocusedTextField();
+
+
+            if (focusedTextField != null) {
+                focusedTextField.appendText(labelText);
+            }
+
+
+        }
+
+    }
+
+    @FXML
+    void onDeleteClicked(MouseEvent event){
+        if (event.getSource() instanceof Pane) {
+            Pane clickedPane = (Pane) event.getSource();
+
+            Label clickedLabel = (Label) clickedPane.getChildren().get(0);
+
+            String labelText = clickedLabel.getText();
+            //System.out.println(labelText);
+
+
+            TextField focusedTextField = getFocusedTextField();
+
+
+            if (focusedTextField != null) {
+                focusedTextField.deleteText(focusedTextField.getLength()-1,focusedTextField.getLength());
+            }
+
+
+        }
+    }
+
+    // Helper method to get the currently focused text field
+    private TextField getFocusedTextField() {
+        if (textFirstPolynomial.isFocused()) {
+            return textFirstPolynomial;
+        } else if (textSecondPolynomial.isFocused()) {
+            return textSecondPolynomial;
+        } else {
+            return null; // No text field is focused
+        }
+    }
+
+
 
 }
