@@ -10,6 +10,10 @@ public class Polynomial {
         this.monomials = new HashMap<>();
     }
 
+    public Map<Integer, Monomial> getMonomials() {
+        return monomials;
+    }
+
     public void addMonomial(Monomial monomial){
         monomials.put(monomial.degree,new Monomial(monomial.degree,monomial.coefficient));
     }
@@ -92,7 +96,18 @@ public class Polynomial {
         return result.toString();
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Polynomial other = (Polynomial) obj;
+        // Compare the content of the polynomials
+        return this.toString().equals(other.toString());
+    }
 
 
 
