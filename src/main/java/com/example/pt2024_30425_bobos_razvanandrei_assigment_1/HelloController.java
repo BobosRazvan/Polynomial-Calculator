@@ -1,6 +1,7 @@
 package com.example.pt2024_30425_bobos_razvanandrei_assigment_1;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -186,13 +187,13 @@ public class HelloController {
                     int exponent = Integer.parseInt(parts[1]);
                     polynomial.addMonomial(new Monomial(exponent, coefficient));
                 } else {
-                    textResult.setText("Invalid monomial format.");
+                    showAlert(Alert.AlertType.ERROR, "Invalid Monomial Format", "Invalid monomial format: " + monomialString);
                     System.err.println("Invalid monomial format: " + monomialString);
 
                 }
             }
         } else {
-            textResult.setText("Invalid monomial format.");
+            showAlert(Alert.AlertType.ERROR, "Empty Input", "Input string is empty");
             System.err.println("Input string is empty");
 
         }
@@ -257,6 +258,14 @@ public class HelloController {
         }
     }
 
+
+    private void showAlert(Alert.AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
 
 }

@@ -114,11 +114,8 @@ public class Operations {
                     r = operations.subtract(r, intermediary);
 
                 }
-
                 rest=r;
 
-                //q.showPolynom();
-                //rest.showPolynom();
                 return new DivisionResult(q, r);
             }
         } else {
