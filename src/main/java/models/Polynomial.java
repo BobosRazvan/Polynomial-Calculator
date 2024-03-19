@@ -57,43 +57,61 @@ public class Polynomial {
 
     public String toString() {
         StringBuilder result = new StringBuilder();
-        boolean firstTerm = true; // to handle leading '+' sign
+        boolean firstTerm = true;
         List<Integer> degrees = new ArrayList<>(monomials.keySet());
-        Collections.sort(degrees, Collections.reverseOrder()); // Sort degrees in descending order
+        Collections.sort(degrees, Collections.reverseOrder());
+
         for (int degree : degrees) {
             Monomial monomial = monomials.get(degree);
             if (monomial != null) {
-                double coefficient = monomial.getCoefficient().doubleValue();
-                if (coefficient != 0.0) {
-                    String coefficientString;
-                    if (coefficient == (int) coefficient) {
-                        coefficientString = Integer.toString((int) coefficient);
-                    } else {
-                        // Format coefficient to two decimal places
-                        coefficientString = String.format("%.2f", coefficient);
-                    }
-                    if (!firstTerm) {
-                        if (coefficient > 0) {
-                            result.append(" + ");
-                        } else {
-                            result.append(" - ");
-                            coefficientString = coefficientString.substring(1); // Remove the negative sign from coefficientString
-                        }
-                    }
-                    if (Math.abs(coefficient) != 1 || degree == 0) { // Skip coefficient if it's 1 (except for constant term)
-                        result.append(coefficientString);
-                    }
-                    if (degree > 0) {
-                        result.append("x");
-                        if (degree > 1) {
-                            result.append("^").append(degree);
-                        }
-                    }
-                    firstTerm = false;
-                }
+                appendMonomial(result, monomial, degree, firstTerm);
+                firstTerm = false;
             }
         }
         return result.toString();
+    }
+
+    private void appendMonomial(StringBuilder result, Monomial monomial, int degree, boolean firstTerm) {
+        double coefficient = monomial.getCoefficient().doubleValue();
+        if (coefficient != 0.0) {
+            String coefficientString = formatCoefficient(coefficient);
+            if (!firstTerm) {
+                appendTermSeparator(result, coefficient);
+            }
+            appendCoefficient(result, coefficient, degree);
+            appendVariable(result, degree);
+        }
+    }
+
+    private String formatCoefficient(double coefficient) {
+        if (coefficient == (int) coefficient) {
+            return Integer.toString((int) coefficient);
+        } else {
+            return String.format("%.2f", coefficient);
+        }
+    }
+
+    private void appendTermSeparator(StringBuilder result, double coefficient) {
+        if (coefficient > 0) {
+            result.append(" + ");
+        } else {
+            result.append(" - ");
+        }
+    }
+
+    private void appendCoefficient(StringBuilder result, double coefficient, int degree) {
+        if (Math.abs(coefficient) != 1 || degree == 0) {
+            result.append(formatCoefficient(Math.abs(coefficient)));
+        }
+    }
+
+    private void appendVariable(StringBuilder result, int degree) {
+        if (degree > 0) {
+            result.append("x");
+            if (degree > 1) {
+                result.append("^").append(degree);
+            }
+        }
     }
 
     @Override

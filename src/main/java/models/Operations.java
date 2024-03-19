@@ -6,55 +6,41 @@ public class Operations {
 
     public static Polynomial add(Polynomial polynomial1, Polynomial polynomial2) {
         Polynomial result = new Polynomial();
-
-        // Add monomials from polynomial1 to the result
         for (Map.Entry<Integer, Monomial> entry : polynomial1.monomials.entrySet()) {
             Monomial resultMonomial = entry.getValue();
             result.addMonomial(resultMonomial);
         }
-
-        // Add monomials from polynomial2 to the result
         for (Map.Entry<Integer, Monomial> entry : polynomial2.monomials.entrySet()) {
             int degree = entry.getKey();
             Monomial resultMonomial = entry.getValue();
-
-            // Check if the monomial with the same degree exists in the result polynomial
             if (result.monomials.containsKey(degree)) {
-                // If it exists, add the current monomial to it
                 Monomial existingMonomial = result.monomials.get(degree);
                 Monomial newMonomial = existingMonomial.add(resultMonomial);
                 result.addMonomial(newMonomial);
 
             } else {
-                // Otherwise, add the current monomial to the result polynomial
                 result.addMonomial(resultMonomial);
             }
         }
-
         return result;
     }
 
     public static Polynomial subtract(Polynomial polynomial1,Polynomial polynomial2){
         Polynomial result= new Polynomial();
-
         for (Map.Entry<Integer, Monomial> entry : polynomial1.monomials.entrySet()) {
             Monomial resultMonomial = entry.getValue();
             result.addMonomial(resultMonomial);
         }
-
         for (Map.Entry<Integer, Monomial> entry : polynomial2.monomials.entrySet()){
             Monomial monomial2= entry.getValue();
             int degree=entry.getKey();
-
             if(result.monomials.containsKey(degree)){
                 Monomial newResult=result.monomials.get(degree).subtract(monomial2);
                 result.addMonomial(newResult);
-
             }else{
                 result.addMonomial(monomial2);
             }
         }
-
         return result;
     }
 
@@ -103,7 +89,6 @@ public class Operations {
 
     public static Polynomial differentiate(Polynomial polynomial1) {
         Polynomial result = new Polynomial();
-
         for (Map.Entry<Integer, Monomial> entry : polynomial1.monomials.entrySet()) {
             int degree = entry.getKey();
             Monomial originalMonomial = entry.getValue();
