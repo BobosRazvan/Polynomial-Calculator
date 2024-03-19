@@ -1,8 +1,6 @@
 package models;
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
@@ -77,6 +75,7 @@ public class OperationsTest {
         expected.addMonomial(new MonomialWithIntegerCoefficient(0, 2));
 
         assertEquals(result,expected);
+
     }
 
 

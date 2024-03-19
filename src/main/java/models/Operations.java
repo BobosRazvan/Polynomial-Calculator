@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class Operations {
 
-    public Polynomial add(Polynomial polynomial1, Polynomial polynomial2) {
+    public static Polynomial add(Polynomial polynomial1, Polynomial polynomial2) {
         Polynomial result = new Polynomial();
 
         // Add monomials from polynomial1 to the result
@@ -34,7 +34,7 @@ public class Operations {
         return result;
     }
 
-    public Polynomial subtract(Polynomial polynomial1,Polynomial polynomial2){
+    public static Polynomial subtract(Polynomial polynomial1,Polynomial polynomial2){
         Polynomial result= new Polynomial();
 
         for (Map.Entry<Integer, Monomial> entry : polynomial1.monomials.entrySet()) {
@@ -59,37 +59,26 @@ public class Operations {
     }
 
 
-    public Polynomial multiply(Polynomial polynomial1,Polynomial polynomial2){
-
+    public static Polynomial multiply(Polynomial polynomial1,Polynomial polynomial2){
         Polynomial result = new Polynomial();
-
         for(Map.Entry<Integer,Monomial> entry1 : polynomial1.monomials.entrySet()){
             for(Map.Entry<Integer,Monomial> entry2 : polynomial2.monomials.entrySet()){
                 int degree1=entry1.getKey();
                 int degree2=entry2.getKey();
-
                 Monomial monomial1=entry1.getValue();
                 Monomial monomial2=entry2.getValue();
                 Monomial resultMonomial=monomial1.multiply(monomial2);
-
                 if(result.monomials.containsKey(resultMonomial.degree)){
                     Monomial newResult=result.monomials.get(resultMonomial.degree).add(resultMonomial);
                     result.addMonomial(newResult);
                 }
                 else result.addMonomial(resultMonomial);
-
             }
         }
-
         return result;
     }
 
-    public DivisionResult divide(Polynomial n, Polynomial d) {
-        Operations operations = new Operations();
-
-        System.out.println(n.getLead().degree);
-        System.out.println(d.getLead().degree);
-
+    public static DivisionResult divide(Polynomial n, Polynomial d) {
         if (n.getLead().degree >= d.getLead().degree) {
             if (d.checkIfPolynomIsZero()) {
                 throw new IllegalArgumentException("The divider is 0!.");
@@ -97,34 +86,22 @@ public class Operations {
                 Polynomial q = new Polynomial();
                 Polynomial rest = new Polynomial();
                 Polynomial r = n;
-
-                //r.showPolynom();
-
                 while (!r.checkIfPolynomIsZero() && r.getLead().degree >= d.getLead().degree) {
                     Polynomial t = new Polynomial();
                     Monomial tMonomial = r.getLead().divide(d.getLead());
-                    System.out.println(tMonomial.coefficient+" "+tMonomial.degree);
-
                     t.addMonomial(tMonomial);
-
-                    q = operations.add(q, t);
-
-                    Polynomial intermediary = operations.multiply(t, d);
-
-                    r = operations.subtract(r, intermediary);
-
+                    q = Operations.add(q, t);
+                    Polynomial intermediary = Operations.multiply(t, d);
+                    r = Operations.subtract(r, intermediary);
                 }
                 rest=r;
-
                 return new DivisionResult(q, r);
             }
-        } else {
-            throw new IllegalArgumentException("The first polynomial is smaller than the second.");
-        }
+        } else throw new IllegalArgumentException("The first polynomial is smaller than the second.");
     }
 
 
-    public Polynomial differentiate(Polynomial polynomial1) {
+    public static Polynomial differentiate(Polynomial polynomial1) {
         Polynomial result = new Polynomial();
 
         for (Map.Entry<Integer, Monomial> entry : polynomial1.monomials.entrySet()) {
@@ -142,23 +119,19 @@ public class Operations {
     }
 
 
-    public Polynomial integrate(Polynomial polynomial1) {
+    public static Polynomial integrate(Polynomial polynomial1) {
         Polynomial result = new Polynomial();
-
         for (Map.Entry<Integer, Monomial> entry : polynomial1.monomials.entrySet()) {
             int degree = entry.getKey();
             Monomial originalMonomial = entry.getValue();
             Monomial resultMonomial = new Monomial(degree + 1,originalMonomial.coefficient); // Create a new Monomial object
-
             if (degree == -1) {
                 throw new IllegalArgumentException("You cannot integrate a polynomial of form a/x.");
             } else {
                 resultMonomial.coefficient = originalMonomial.coefficient.doubleValue() / (degree + 1); // Calculate the integrated coefficient
             }
-
             result.addMonomial(resultMonomial);
         }
-
         return result;
     }
 

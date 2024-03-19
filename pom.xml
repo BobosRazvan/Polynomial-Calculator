@@ -65,7 +65,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.pt2024_30425_bobos_razvanandrei_assigment_1/com.example.pt2024_30425_bobos_razvanandrei_assigment_1.HelloApplication
+                                com.example.pt2024_30425_bobos_razvanandrei_assigment_1/com.example.pt2024_30425_bobos_razvanandrei_assigment_1.CalculatorApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
