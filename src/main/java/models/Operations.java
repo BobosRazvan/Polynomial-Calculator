@@ -66,13 +66,13 @@ public class Operations {
 
     public static DivisionResult divide(Polynomial n, Polynomial d) {
         if (n.getLead().degree >= d.getLead().degree) {
-            if (d.checkIfPolynomIsZero()) {
+            if (d.checkIfPolynomialZero()) {
                 throw new IllegalArgumentException("The divider is 0!.");
             } else {
                 Polynomial q = new Polynomial();
                 Polynomial rest = new Polynomial();
                 Polynomial r = n;
-                while (!r.checkIfPolynomIsZero() && r.getLead().degree >= d.getLead().degree) {
+                while (!r.checkIfPolynomialZero() && r.getLead().degree >= d.getLead().degree) {
                     Polynomial t = new Polynomial();
                     Monomial tMonomial = r.getLead().divide(d.getLead());
                     t.addMonomial(tMonomial);

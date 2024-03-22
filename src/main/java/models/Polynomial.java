@@ -18,7 +18,7 @@ public class Polynomial {
         monomials.put(monomial.degree,new Monomial(monomial.degree,monomial.coefficient));
     }
 
-    public Boolean checkIfPolynomIsZero(){
+    public Boolean checkIfPolynomialZero(){
         Monomial degreeZeroMonomial = this.monomials.get(0);
         if (degreeZeroMonomial != null && degreeZeroMonomial.coefficient.doubleValue() == 0.0) {
             for(Map.Entry<Integer,Monomial> entry : this.monomials.entrySet()){
@@ -76,7 +76,7 @@ public class Polynomial {
         if (coefficient != 0.0) {
             String coefficientString = formatCoefficient(coefficient);
             if (!firstTerm) {
-                appendTermSeparator(result, coefficient);
+                appendTermSeparator(result, coefficient);//based on coefficient sign
             }
             appendCoefficient(result, coefficient, degree);
             appendVariable(result, degree);

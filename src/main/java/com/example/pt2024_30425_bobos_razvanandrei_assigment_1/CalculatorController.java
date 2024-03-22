@@ -193,12 +193,12 @@ public class CalculatorController {
 
     private void createMonomial(Polynomial polynomial, String monomialString) {
         String[] parts = monomialString.trim().split("x\\^");
-        if (parts.length == 1) {
+        if (parts.length == 1) { //no exponent
             double coefficient = parseCoefficient(parts[0]);
             int exponent = parseExponent(parts[0]);
             polynomial.addMonomial(new Monomial(exponent, coefficient));
         } else if (parts.length == 2) {
-            double coefficient = parts[0].isEmpty() ? 1.0 : Double.parseDouble(parts[0]);
+            double coefficient = parts[0].isEmpty() ? 1.0 : Double.parseDouble(parts[0]);//if it is empty it is 1 else parse double
             int exponent = Integer.parseInt(parts[1]);
             polynomial.addMonomial(new Monomial(exponent, coefficient));
         } else {
@@ -220,10 +220,14 @@ public class CalculatorController {
     }
 
     private int parseExponent(String monomialString) {
+        //System.out.println(monomialString);
         if (monomialString.isEmpty()) {
             return 0;
-        } else if (monomialString.equals("x")) {
+        } else if (monomialString.contains("x") && !monomialString.contains("^")) {
             return 1;
+        } else if (monomialString.contains("^")) {
+            String[] parts = monomialString.split("\\^");
+            return Integer.parseInt(parts[1]);
         } else {
             return 0; // Exponent is 0 if no exponent is specified
         }
